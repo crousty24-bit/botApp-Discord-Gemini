@@ -1,0 +1,24 @@
+{
+  "name": "discordbot-gemini-webhook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crousty24-bit/DiscordBot-Gemini-Webhook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/crousty24-bit/DiscordBot-Gemini-Webhook/issues"
+  },
+  "homepage": "https://github.com/crousty24-bit/DiscordBot-Gemini-Webhook#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}
