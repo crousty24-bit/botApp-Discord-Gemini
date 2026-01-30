@@ -1,23 +1,32 @@
-require("dotenv").config();
+import 'dotenv/config';
+import { Client, GatewayIntentBits } from 'discord.js'; //allow to exist on servers, get slash cmd
 
-const { askGemini } = require("./gemini");
-const { sendToDiscord } = require("./webhook");
+// 1. Création du client Discord
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds],
+});
 
-const prompt = process.argv.slice(2).join(" ").trim();
+// 2. Confirmation de connexion
+client.once('ready', () => {
+  console.log(`🤖 Bot connecté en tant que ${client.user.tag}`);
+});
 
-if (!prompt) {
-  console.log("Usage: node src/index.js \"Ta question\"");
-  process.exit(1);
-}
+// 3. Écoute des interactions
+client.on('interactionCreate', async (interaction) => {
+  // 3.1 Vérifier que c’est une slash command
+  if (!interaction.isChatInputCommand()) return;
 
-async function run() {
-  try {
-    const answer = await askGemini(prompt);
-    await sendToDiscord(answer);
-    console.log("OK: message envoye dans Discord.");
-  } catch (error) {
-    console.error("Erreur:", error.message);
+  // 3.2 Vérifier le nom de la commande
+  if (interaction.commandName === 'ask') {
+    // 3.3 Récupérer l’option "prompt"
+    const prompt = interaction.options.getString('prompt');
+
+    // 3.4 Répondre (test)
+    await interaction.reply({
+      content: `🧪 Reçu : "${prompt}"`,
+    });
   }
-}
+});
 
-run();
+// 4. Connexion du bot
+client.login(process.env.DISCORD_BOT_TOKEN);

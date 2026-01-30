@@ -4,11 +4,11 @@ import { REST, Routes, SlashCommandBuilder } from 'discord.js';
 const commands = [
   new SlashCommandBuilder()
     .setName('ask')
-    .setDescription('Envoyer un prompt à Gemini')
+    .setDescription('Poser une question à MetBot')
     .addStringOption(option =>
       option
         .setName('prompt')
-        .setDescription('Le prompt à envoyer à Gemini')
+        .setDescription('Le prompt à envoyer à MetBot')
         .setRequired(true)
     )
     .toJSON()
