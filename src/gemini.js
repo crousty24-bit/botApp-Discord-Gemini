@@ -39,4 +39,4 @@ async function askGemini(prompt) {
   return answer;
 }
 
-module.exports = { askGemini };
+export { askGemini }; // change export CommonJS to ESM
